@@ -12,7 +12,6 @@ window.onload = function () {
                 cor += letters[Math.floor(Math.random() * 16)];
                 pcselected[index].style.backgroundColor = cor;
             }
-            localStorage.setItem('colorPalette', JSON.stringify(pcselected.style.backgroundColor));
         }
     })
 }
