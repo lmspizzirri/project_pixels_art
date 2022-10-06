@@ -35,6 +35,10 @@ function fillBoard() {
   }
 }
 
+function colorSelected(){
+    
+}
+
 // Preenchendo o quadro de pixels
 // Executando funções
 document.onload = function (){
