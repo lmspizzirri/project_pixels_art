@@ -16,16 +16,21 @@ button.addEventListener('click', () => {
         cores[index] = cor;
       }
     }
-    window.localStorage.setItem('colorPalette', JSON.stringify(cores));
-  }
+localStorage.setItem('colorPalette', JSON.stringify(cores));
+}
 });
-
+// Salvando Cores do colorPalette
 function colorStorage() {
-  const recoveredColors = JSON.parse(window.localStorage.getItem('colorPalette'));
+  const recoveredColors = JSON.parse(localStorage.getItem('colorPalette'));
+  if(recoveredColors === null){
+    return
+  }
   for (let i = 0; i < pcselected.length; i += 1) {
     pcselected[i].style.backgroundColor = recoveredColors[i];
   }
+  console.log(recoveredColors);
 }
+// Preenchendo o quadro de pixels
 function fillBoard() {
   const board = document.getElementById('pixel-board');
   for (let index = 0; index < 25; index += 1) {
@@ -34,15 +39,23 @@ function fillBoard() {
     board.appendChild(pixel);
   }
 }
-
-function colorSelected(){
-    
+// Trocando cor para pintar
+const color = document.getElementsByClassName('color');
+let changecolor;
+function colorSelected() {
+  for (let i = 0; i < color.length; i += 1) {
+    color[i].className = 'color';
+  }
+  let temp2 = document.getElementById(changecolor);
+  temp2.className = 'color selected';
+}
+for (let i = 0; i < color.length; i += 1) {
+  changecolor = color[i].id;
+  color[i].addEventListener('click', colorSelected);
 }
 
-// Preenchendo o quadro de pixels
 // Executando funções
-document.onload = function (){
+window.onload = function(){
 colorStorage();
-}
-
 fillBoard();
+}
