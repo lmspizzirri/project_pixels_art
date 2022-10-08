@@ -22,13 +22,12 @@ localStorage.setItem('colorPalette', JSON.stringify(cores));
 // Salvando Cores do colorPalette
 function colorStorage() {
   const recoveredColors = JSON.parse(localStorage.getItem('colorPalette'));
-  if(recoveredColors === null){
-    return
+  if (recoveredColors === null) {
+    return;
   }
   for (let i = 0; i < pcselected.length; i += 1) {
     pcselected[i].style.backgroundColor = recoveredColors[i];
-  }
-  console.log(recoveredColors);
+  };
 }
 // Preenchendo o quadro de pixels
 function fillBoard() {
@@ -41,16 +40,13 @@ function fillBoard() {
 }
 // Trocando cor para pintar
 const color = document.getElementsByClassName('color');
-let changecolor;
-function colorSelected() {
+function colorSelected(event) {
   for (let i = 0; i < color.length; i += 1) {
     color[i].className = 'color';
   }
-  let temp2 = document.getElementById(changecolor);
-  temp2.className = 'color selected';
+  event.target.className += " selected";
 }
 for (let i = 0; i < color.length; i += 1) {
-  changecolor = color[i].id;
   color[i].addEventListener('click', colorSelected);
 }
 
