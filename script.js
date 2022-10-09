@@ -47,11 +47,33 @@ function colorSelected(event) {
   event.target.className += " selected";
 }
 for (let i = 0; i < color.length; i += 1) {
-  color[i].addEventListener('click', colorSelected);
+    color[i].addEventListener('click', colorSelected);
 }
+
+// Pintando o board
+fillBoard();
+const boardPixels = document.getElementsByClassName('pixel');
+  function paintingBoard(event) {
+    const selected = document.querySelector('.selected');
+    const pickColor = getComputedStyle(selected);
+    event.target.style.backgroundColor = pickColor.backgroundColor;
+  }
+  for (let i = 0; i < 25; i += 1) {
+    boardPixels[i].addEventListener('click', paintingBoard);
+  }
+// Botão Reset
+const resetButton = document.getElementById('clear-board');
+function resetBoard() {
+  if (boardPixels === null) {
+    return;
+  }
+  for (let i = 0; i < 25; i += 1) {
+    boardPixels[i].style.backgroundColor = 'rgb(255, 255, 255)';
+  }
+}
+resetButton.addEventListener('click', resetBoard);
 
 // Executando funções
 window.onload = function(){
 colorStorage();
-fillBoard();
 }
